@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="360dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="166dp"
+        android:text="@string/welcomeText"
+        android:textAlignment="center"
+        android:textColor="@color/icon"
+        android:textSize="28sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/goToLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/goToLogin"
+        android:layout_width="238dp"
+        android:layout_height="92dp"
+        android:layout_marginBottom="309dp"
+        android:onClick="goToLogin"
+        android:text="Continue with Login"
+        android:backgroundTint="@color/icon"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FamilyToDoList</string>
+    <string name="family_register_text">Not have a family account? <b>Register</b> </string>
+    <string name="not_have_account_register">Not have an account? <b>Register</b> </string>
+    <string name="forgot_password_recover">Forgot Password? <b>Recover</b> </string>
+    <string name="welcomeText"><b> Welcome to Family To-Do List Mobile App</b> </string>
+</resources>
