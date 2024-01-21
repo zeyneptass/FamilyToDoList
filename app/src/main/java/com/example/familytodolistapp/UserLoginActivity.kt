@@ -40,6 +40,8 @@ class UserLoginActivity : AppCompatActivity() {
 
                         // Kullanıcı bilgilerini Firestore'dan al ve diğer sayfaya yönlendir
                         getUserInfoAndNavigateToProfile(auth.currentUser?.uid)
+                        val intent = Intent(this,ProfileActivity::class.java)
+                        startActivity(intent)
                     } else {
                         // Giriş başarısız
                         Toast.makeText(applicationContext, "Login failed", Toast.LENGTH_SHORT).show()

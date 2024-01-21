@@ -54,11 +54,7 @@ class FamilyRegisterActivity : AppCompatActivity() {
             val intent = Intent(this,FamilyRegisterActivity::class.java)
             startActivity(intent)
         }
-
-
     }
-
-
     fun goToLogin(view: View) {
         val intent = Intent(this, FamilyLoginActivity::class.java)
         startActivity(intent)
