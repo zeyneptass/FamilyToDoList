@@ -19,6 +19,9 @@
             android:name=".UserLoginActivity"
             android:exported="false" />
         <activity
+            android:name=".AddFamilyUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".FamilyRegisterActivity"
             android:exported="false" />
         <activity
