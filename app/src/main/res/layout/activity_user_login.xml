@@ -83,7 +83,7 @@
             >
 
             <EditText
-                android:id="@+id/LoginEmailText"
+                android:id="@+id/loginEmailText"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:hint="Enter your email"
@@ -106,7 +106,7 @@
             app:startIconDrawable="@drawable/ic_password">
 
             <EditText
-                android:id="@+id/LoginPasswordText"
+                android:id="@+id/loginPasswordText"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="20dp"
@@ -125,7 +125,7 @@
             android:layout_marginTop="10dp"
             android:text="Login"
             android:textSize="22sp"
-            android:onClick="loginButton"
+            android:onClick="userLoginButton"
             android:backgroundTint="@color/icon"/>
 
         <TextView

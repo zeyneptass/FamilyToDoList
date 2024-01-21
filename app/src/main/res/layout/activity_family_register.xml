@@ -135,8 +135,7 @@
             android:onClick="addFamilyAccount"
             android:backgroundTint="@color/icon"
             android:textSize="22sp"
-            android:text="Create A Family Account"
-            />
+            android:text="Create A Family Account"/>
 
     </RelativeLayout>
 
