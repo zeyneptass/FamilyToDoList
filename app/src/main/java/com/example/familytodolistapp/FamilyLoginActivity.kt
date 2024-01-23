@@ -41,7 +41,7 @@ class FamilyLoginActivity : AppCompatActivity() {
                 .addOnSuccessListener { result ->
                     if (!result.isEmpty) {
                         // Kullanıcı giriş başarılı
-                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "The family account has been successfully logged in.", Toast.LENGTH_SHORT).show()
                         var intent = Intent(this,AddFamilyUserActivity::class.java)
                         startActivity(intent)
 

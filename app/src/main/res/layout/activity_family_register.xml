@@ -48,7 +48,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
 
-            android:src="@drawable/ic_person"
+            android:src="@drawable/ic_people"
             android:layout_centerHorizontal="true"
             android:background="@color/white"
             app:shapeAppearanceOverlay="@style/ImageStyle_Circle" />
@@ -61,7 +61,7 @@
             android:layout_below="@+id/profileIv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Create a new account"
+            android:text="Create a new family account"
             android:textSize="22sp"/>
 
 

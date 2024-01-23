@@ -8,11 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.familytodolistapp.databinding.ActivityFamilyRegisterBinding
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FamilyRegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFamilyRegisterBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,5 @@
 package com.example.familytodolistapp
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,14 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.familytodolistapp.databinding.ActivityProfileBinding
 import com.firebase.ui.auth.AuthUI
-
-
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.core.View
 import com.google.firebase.firestore.firestore
-
 
 class ProfileActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -59,7 +55,6 @@ class ProfileActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-
                     Toast.makeText(this, "Account deletion failed..", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -76,7 +71,13 @@ class ProfileActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-    fun goToMyToDoList(view: View) {}
-    fun btnComposeToDoList(view: View) {}
+    fun goToMyToDoList(view: View) {
+        val intent = Intent(this,MyToDoListActivity::class.java)
+        startActivity(intent)
+    }
+    fun btnComposeToDoList(view: android.view.View) {
+        val intent = Intent(this,UserToDoListActivity::class.java)
+        startActivity(intent)
+    }
 
 }
