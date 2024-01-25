@@ -2,28 +2,36 @@ package com.example.familytodolistapp
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.familytodolistapp.databinding.ActivityFamilyRegisterBinding
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FamilyRegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFamilyRegisterBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFamilyRegisterBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
     }
 
-    fun addFamilyAccount(viw: View) {
+    fun goToLogin(view: View) {
+        val intent = Intent(this, FamilyLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    fun addFamilyAccount(view: View) {
         val familyName = binding.familyNameText.text.toString()
         val password = binding.familyPasswordText.text.toString()
         val passwordAgain = binding.familyPasswordAgainText.text.toString()
@@ -45,6 +53,8 @@ class FamilyRegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Family account created successfully!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,AddFamilyUserActivity::class.java)
                     startActivity(intent)
+
+
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e)
@@ -56,10 +66,5 @@ class FamilyRegisterActivity : AppCompatActivity() {
             val intent = Intent(this,FamilyRegisterActivity::class.java)
             startActivity(intent)
         }
-    }
-    fun goToLogin(view: View) {
-        val intent = Intent(this, FamilyLoginActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }
