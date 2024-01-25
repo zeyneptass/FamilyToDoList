@@ -17,7 +17,7 @@ class UserRegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityUserRegisterBinding
 
-    private lateinit var familyCollection: CollectionReference
+
     private lateinit var usersCollection: CollectionReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,24 +28,20 @@ class UserRegisterActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        // Intent'ten familyCollection'ı alırken null kontrolü ekledim
-        familyCollection = intent.getSerializableExtra("families") as? CollectionReference
-            ?: FirebaseFirestore.getInstance().collection("families") // Default olarak bir collection atanabilir
+        val familiesCollection = intent.getSerializableExtra("families") as? CollectionReference
+            ?: FirebaseFirestore.getInstance().collection("families") // Default olarak bir koleksiyon atanabilir
+
 
         // familyCollection'ın null olup olmadığını kontrol et
-        if (familyCollection == null) {
-            Toast.makeText(applicationContext, "Family collection is null.", Toast.LENGTH_LONG).show()
-            finish()
-        }
-
-        // usersCollection'ı başlatmadan önce familyCollection'ın bir belge içerip içermediğini kontrol et
-        val familyDocumentId = familyCollection?.id
-        if (familyDocumentId == null) {
-            Toast.makeText(applicationContext, "Family document ID is null.", Toast.LENGTH_LONG).show()
+        if (familiesCollection == null) {
+            Toast.makeText(applicationContext, "Families collection is null.", Toast.LENGTH_LONG).show()
             finish()
         } else {
-            usersCollection = familyCollection!!.document(familyDocumentId).collection("users") // collection belirtildi
+            // familiesCollection varsa, usersCollection'ı bu koleksiyon altında oluştur
+            usersCollection = familiesCollection.document("users").collection("users")
         }
+
+
     }
 
     fun signInButtonForUser(view: View) {
@@ -63,6 +59,7 @@ class UserRegisterActivity : AppCompatActivity() {
 
                         currentUser?.updateProfile(profileUpdateRequest)?.addOnCompleteListener { updateTask ->
                             if (updateTask.isSuccessful) {
+                                // userType'ı önceki sayfadan al
                                 val userType = intent.getStringExtra("userType") ?: UserType.child.name
                                 saveUserTypeToFirestore(currentUser?.uid, email, username, userType)
 
@@ -81,6 +78,7 @@ class UserRegisterActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Your passwords do not match.", Toast.LENGTH_LONG).show()
         }
     }
+
 
     private fun saveUserTypeToFirestore(userId: String?, userEmail: String, username: String, userType: String) {
         userId?.let {
