@@ -141,6 +141,20 @@
                 android:layout_height="80dp"
                 android:hint="Confirm the password"
                 android:inputType="textPassword"/>
+
+            <TextView
+                android:id="@+id/gotoUserLogin"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LoginButton"
+                android:layout_centerInParent="true"
+                android:onClick="gotoUserLogin"
+                android:padding="12dp"
+                android:text="@string/have_an_user_account"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/registerButton"

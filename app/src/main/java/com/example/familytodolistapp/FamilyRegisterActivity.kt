@@ -44,27 +44,60 @@ class FamilyRegisterActivity : AppCompatActivity() {
                 "familyName" to familyName,
                 "familyPassword" to password
             )
+            // ...
 
-            // Veriyi Firestore'a ekle
-            familyCollection.add(userData)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                    // Burada başarıyla eklendiğini işaretlemek veya kullanıcıya geri bildirim vermek için gerekli işlemleri yapabilirsiniz.
-                    Toast.makeText(this, "Family account created successfully!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this,AddFamilyUserActivity::class.java)
-                    startActivity(intent)
+// familyName'i kullanarak sorgu yap
+            familyCollection.whereEqualTo("familyName", familyName)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (documents.isEmpty) {
+                        // familyName kullanılmıyorsa, aynı işlemleri devam ettir
+                        // ...
 
-
+                        // Veriyi Firestore'a ekle
+                        familyCollection.add(userData)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d(
+                                    TAG,
+                                    "DocumentSnapshot added with ID: ${documentReference.id}"
+                                )
+                                // Burada başarıyla eklendiğini işaretlemek veya kullanıcıya geri bildirim vermek için gerekli işlemleri yapabilirsiniz.
+                                Toast.makeText(
+                                    this,
+                                    "Family account created successfully!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val intent = Intent(this, AddFamilyUserActivity::class.java)
+                                startActivity(intent)
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                                // Hata durumunda kullanıcıya geri bildirim vermek için gerekli işlemleri yapabilirsiniz.
+                                Toast.makeText(
+                                    this,
+                                    "Error creating family account",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    } else {
+                        // familyName kullanılıyorsa, kullanıcıya uygun bir isim seçmesini söyle veya başka bir işlem yap
+                        Toast.makeText(
+                            this,
+                            "This family name is already taken. Please choose another one.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
+                .addOnFailureListener { exception ->
+                    Log.w(TAG, "Error getting documents: ", exception)
                     // Hata durumunda kullanıcıya geri bildirim vermek için gerekli işlemleri yapabilirsiniz.
-                    Toast.makeText(this, "Error creating family account", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Error checking family name availability",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-        }else {
-            Toast.makeText(applicationContext, "Your passwords do not match.", Toast.LENGTH_LONG).show()
-            val intent = Intent(this,FamilyRegisterActivity::class.java)
-            startActivity(intent)
         }
+
     }
 }

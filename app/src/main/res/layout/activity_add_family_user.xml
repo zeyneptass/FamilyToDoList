@@ -101,6 +101,7 @@ tools:context=".AddFamilyUserActivity">
             android:enabled="false"
             android:backgroundTint="@color/icon"
             android:text="Continue to as a user"
+            android:onClick="goToUserAdd"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 

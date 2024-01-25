@@ -26,15 +26,14 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        loadMyInfo()
+        val userType = intent.getStringExtra("userType")
+        loadMyInfo(userType)
     }
-    fun loadMyInfo(){
+    fun loadMyInfo(userType: String?) {
         val user = Firebase.auth.currentUser
         user?.let {
             val displayName = it.displayName
             val email = it.email
-            val userType = intent.getStringExtra("userType")
 
             // Update the TextViews with the user's data
             binding.nameTv.text = displayName

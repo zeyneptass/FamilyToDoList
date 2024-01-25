@@ -3,6 +3,7 @@ package com.example.familytodolistapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.RadioGroup
 
@@ -24,11 +25,14 @@ class AddFamilyUserActivity : AppCompatActivity() {
             }
             // Butonun etkinlik durumunu güncelle
             btnSelectUserType.isEnabled = true
+            val intent = Intent(this, UserRegisterActivity::class.java)
+            intent.putExtra("userType", selectedUserType)
+            startActivity(intent)
         }
         // Butona tıklanınca çalışacak olan listener
         btnSelectUserType.setOnClickListener {
             // Seçilen userType'ı bir sonraki sayfaya taşıyarak yönlendirme yapabilirsiniz
-            val intent = Intent(this, UserLoginActivity::class.java)
+            val intent = Intent(this, UserRegisterActivity::class.java)
             intent.putExtra("userType", selectedUserType)
             startActivity(intent)
         }

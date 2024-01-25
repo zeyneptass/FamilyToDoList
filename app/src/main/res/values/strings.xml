@@ -4,4 +4,6 @@
     <string name="not_have_account_register">Not have an account? <b>Register</b> </string>
     <string name="forgot_password_recover">Forgot Password? <b>Recover</b> </string>
     <string name="welcomeText"><b> Welcome to Family To-Do List Mobile App</b> </string>
+    <string name="have_an_user_account">Already have a user account? <b>Login</b> </string>
+
 </resources>

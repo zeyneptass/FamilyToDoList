@@ -16,6 +16,8 @@ import com.google.firebase.ktx.Firebase
 class UserRegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityUserRegisterBinding
+    private var userType: String = UserType.child.name
+
 
 
     private lateinit var usersCollection: CollectionReference
@@ -27,10 +29,11 @@ class UserRegisterActivity : AppCompatActivity() {
         setContentView(view)
 
         auth = Firebase.auth
+        userType = intent.getStringExtra("userType") ?: UserType.child.name
+
 
         val familiesCollection = intent.getSerializableExtra("families") as? CollectionReference
             ?: FirebaseFirestore.getInstance().collection("families") // Default olarak bir koleksiyon atanabilir
-
 
         // familyCollection'ın null olup olmadığını kontrol et
         if (familiesCollection == null) {
@@ -39,11 +42,9 @@ class UserRegisterActivity : AppCompatActivity() {
         } else {
             // familiesCollection varsa, usersCollection'ı bu koleksiyon altında oluştur
             usersCollection = familiesCollection.document("users").collection("users")
+
         }
-
-
     }
-
     fun signInButtonForUser(view: View) {
         val email = binding.registerEmailText.text.toString()
         val username = binding.usernameText.text.toString()
@@ -63,13 +64,17 @@ class UserRegisterActivity : AppCompatActivity() {
                                 val userType = intent.getStringExtra("userType") ?: UserType.child.name
                                 saveUserTypeToFirestore(currentUser?.uid, email, username, userType)
 
+                                val profileIntent = Intent(this, ProfileActivity::class.java)
+                                profileIntent.putExtra("userType", userType)
+                                startActivity(profileIntent)
+
                                 Toast.makeText(applicationContext, "User is added.", Toast.LENGTH_LONG).show()
-                                startActivity(Intent(this, ProfileActivity::class.java))
                                 finish()
                             } else {
                                 Toast.makeText(applicationContext, "Failed to update username", Toast.LENGTH_LONG).show()
                             }
                         }
+
                     } else {
                         Toast.makeText(applicationContext, task.exception?.localizedMessage, Toast.LENGTH_LONG).show()
                     }
@@ -90,5 +95,10 @@ class UserRegisterActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    fun gotoUserLogin(view: View) {
+        val intent = Intent(this,UserLoginActivity::class.java)
+        startActivity(intent)
     }
 }
