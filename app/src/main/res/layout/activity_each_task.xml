@@ -15,47 +15,30 @@
         app:cardCornerRadius="8dp"
         tools:ignore="MissingConstraints">
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/checkbox"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:buttonTint="@color/icon"
-                android:paddingStart="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="39dp"
-                app:layout_constraintBottom_toTopOf="@+id/dateTimePickerButton"
-
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <!-- DateTimePickerButton olarak kullanılacak yeni bir Button ekleyin -->
-            <!-- DateTimePickerButton olarak kullanılacak yeni bir EditText ekleyin -->
-
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:buttonTint="@color/icon"
+            android:paddingStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/dateTimePickerButton"
-            android:paddingStart="70dp"
-            android:layout_width="303dp"
-            android:layout_height="48dp"
+            android:id="@+id/dateTimePickerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/titleTextView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="84dp"
             android:focusable="false"
             android:hint="Select the time and date"
-            android:inputType="none"
-            android:onClick="showDateTimePicker" />
+            android:inputType="datetime"
+            android:onClick="showDateTimePicker"
+            android:paddingStart="70dp" />
 
         <EditText
             android:id="@+id/titleTextView"
@@ -65,9 +48,8 @@
             android:layout_marginEnd="7dp"
             android:hint="Enter a task"
             android:paddingStart="70dp"
-            app:layout_constraintEnd_toEndOf="@+id/materialTextView"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/dateTimePickerButton"
+            app:layout_constraintStart_toStartOf="@+id/dateTimePickerEditText"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.cardview.widget.CardView>

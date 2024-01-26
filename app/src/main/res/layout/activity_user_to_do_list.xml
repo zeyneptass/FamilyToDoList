@@ -8,10 +8,14 @@
     android:padding="10dp"
     android:orientation="vertical"
     tools:context=".UserToDoListActivity">
+
+    <!-- Toolbar -->
     <RelativeLayout
         android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="55dp">
+
+        <!-- Geri git butonu -->
         <ImageButton
             android:id="@+id/toolBarBackBtn"
             android:layout_width="wrap_content"
@@ -21,6 +25,8 @@
             android:background="@android:color/transparent"
             android:layout_centerVertical="true"
             android:padding="12dp"/>
+
+        <!-- Toolbar başlığı -->
         <TextView
             android:id="@+id/toolBarTitleTv"
             style="@style/TextAppearance.MaterialComponents.Body1"
@@ -30,47 +36,72 @@
             android:layout_marginTop="20dp"
             android:text="Compose A To Do List"
             android:textSize="22sp"/>
+
+        <!-- Alt çizgi -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/icon"
             android:layout_alignParentBottom="true"/>
-
     </RelativeLayout>
 
+    <!-- Görevlerin listelendiği RecyclerView -->
     <RelativeLayout
         android:layout_width="402dp"
         android:layout_height="721dp">
-        <RelativeLayout
+
+        <!-- Yeni görev ekle butonu -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/addToDoListItem"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="97dp"
+            android:background="@color/icon"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_white_add"
+            app:shapeAppearanceOverlay="@style/ImageStyle_Circle" />
+
+        <!-- Görevleri listeleyen RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/toDoRecyclerView"
+            android:layout_width="390dp"
+            android:layout_height="498dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="54dp" />
+        <EditText
+            android:id="@+id/dateTimePickerEditText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/addToDoListItem"
-                android:onClick="addToDoList"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="97dp"
-                android:background="@color/icon"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_white_add"
-                app:shapeAppearanceOverlay="@style/ImageStyle_Circle" />
+            android:layout_height="50dp"
+            android:layout_below="@+id/titleTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="84dp"
+            android:focusable="false"
+            android:hint="Select the time and date"
+            android:inputType="text"
+            android:onClick="showDateTimePicker"
+            android:paddingStart="70dp"
+            android:visibility="invisible"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/toDoRecyclerView"
-                android:layout_width="390dp"
-                android:layout_height="498dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="54dp" />
-
-        </RelativeLayout>
-
-
+        <EditText
+            android:id="@+id/titleTextView"
+            android:layout_width="313dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="7dp"
+            android:hint="Enter a task"
+            android:paddingStart="70dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/dateTimePickerEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="invisible"/>
     </RelativeLayout>
+
+    <!-- Bottom Navigation View -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,6 +112,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/bottom_navigation_menu" />
-
     </RelativeLayout>
 </RelativeLayout>

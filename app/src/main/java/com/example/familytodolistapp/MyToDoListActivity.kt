@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 
 class MyToDoListActivity : AppCompatActivity() {
 
@@ -19,11 +20,25 @@ class MyToDoListActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.myToDoListsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val userToDoListActivity = UserToDoListActivity()
-        toDoList = userToDoListActivity.getToDoList()
+        // Doğrudan getToDoList fonksiyonunu çağırın
+        toDoList = getToDoList()
 
         // RecyclerView adapter'ını oluşturun ve bağlayın
         adapter = RecyclerAdapterToDoList(toDoList)
         recyclerView.adapter = adapter
+    }
+
+    // getToDoList fonksiyonunu doğrudan bu sınıf içinde kullanabilirsiniz
+    private fun getToDoList(): MutableList<ToDoListData> {
+        val auth = FirebaseAuth.getInstance()
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            // UserToDoListActivity sınıfından ayrı bir örnek oluşturmanıza gerek yok
+            // Sınıf içinde olduğunuz için doğrudan çağırabilirsiniz
+            return getToDoList()
+        } else {
+            // Kullanıcı kimliği null ise, boş bir liste döndürebilir veya gerekirse başka bir işlem yapabilirsiniz.
+            return mutableListOf()
+        }
     }
 }
